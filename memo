@@ -1,0 +1,10 @@
+#Scan
+nmap.portScanner().scan(ip_lst[0]+' '+ip_lst[1], str(port_lst[0]+port_lst[1]), arguments='--system-dns')
+python web2py.py -S Inventory -M -N -R applications/Inventory/controllers/scan.py 
+
+for row in db(db.t_ip).select(db.t_ip.id, db.t_ip.f_ip_addr):
+    ip2d_rows = db((db.t_ip2device.f_ip_addr == row.f_ip_addr) & (db.t_device.f_hostname == db.t_ip2device.f_hostname)).select()
+    for ip2drow in ip2d_rows:
+        print('Link IP %20s - IP id %5s to device %20s with id %5s' % (row.f_ip_addr, row.id, ip2drow.t_device.f_hostname, ip2drow.t_device.id  ))
+    row.f_device_id = ip2drow.t_device.id
+    row.update_record()

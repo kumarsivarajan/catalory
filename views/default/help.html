@@ -1,0 +1,42 @@
+{{extend 'layout.html'}}
+
+<h1>{{=T('Help')}}</h1>
+{{=MARKMIN('''
+## Description
+SInventory is a simple inventory system based on IP and DNS reverse lookup, including an ITIL Service Catalog and notification feature to send email messages to the contacts of a Service.
+## Features
+### Auto Discovery
+Discover hosts based on network scans, and records the reverse DNS lookup.
+### Notification tool
+Simple incident report & notification interface that sends emails to the Service Contacts
+### ITIL Service Catalog
+Provide service catalog to interface IT to business & align business requirements, especially in term of SLA & communication on Incident Reports. 
+
+The Service Catalog must answer the following questions:
+####From the user perspective:
+- Which services is IT providing?
+- How can I get them?
+- How long will it take to be deliverd?
+####From the Business perspective:
+- Are the Service Levels in line with my Business requirements?
+####From the IT perspective:
+- Can I meet the Service Levels expectations?
+- When an incident occur I can immediately notify the right persons by using the notification interface.
+- When a scheduled downtime must be planned, the Service Catalog will help me to know who should approve the downtime, and who should be notified, and how long in advance should I send notification to meet the SLA.
+
+The Service Catalog should be publicly available to every user of the company. It must answer to the following questions:
+### Other features:
+- Allows exports to CSV or Spreadsheet format (Excel, OpenOffice, ...)
+- Quickly displays Orphan IP addresses, usefull after a new scan. Every IP should be linked to a device (at least).
+''')}}
+{{for page in pages:}}
+<h2>{{=page.title}}</h2>
+{{=MARKMIN(page.body)}}
+<br>
+{{if auth.user and auth.user.username == 'francoisd':}}
+{{=A('edit', _href=URL('edit', args=page.id))}}
+{{pass}}
+{{pass}}
+{{if auth.user and auth.user.username == 'francoisd':}}
+{{=A('create', _href=URL('create'))}}
+{{pass}}

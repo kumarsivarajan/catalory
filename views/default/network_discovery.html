@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+
+<h2>Network Discovery</h2>
+{{if warning:}}
+<h3>No Worker</h3>
+{{=warning}}
+{{pass}}
+
+<h3>IP Ranges</h3>
+{{=ip_range_form}}
+<h3>Run Scan</h3>
+<p>Queue status : <b>{{=job_queued}}</b></p>
+{{=newscanform}}
+
+<h3>Scan History</h3>
+{{=LOAD('default','scan_history', ajax=True)}}
