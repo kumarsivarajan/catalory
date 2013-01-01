@@ -1,10 +1,13 @@
 {{extend 'layout.html'}}
 
 <h2>Network Discovery</h2>
-{{if warning:}}
-<h3>No Worker</h3>
-{{=warning}}
-{{pass}}
+{{
+try:
+print(warning)
+pass
+except:
+pass
+}}
 
 <h3>IP Ranges</h3>
 {{=ip_range_form}}

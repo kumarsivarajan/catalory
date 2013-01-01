@@ -293,9 +293,9 @@ def network_discovery():
 
                 In order to fix that, please run in the web2py folder:
                 <code>
-                python web2py.py -K catallory
+                python web2py.py -K catalory
                 </code>
-                (if catallory is the name of installed app)
+                (if catalory is the name of installed app)
         ''')
     ip_range_form = SQLFORM.grid(db.t_range,onupdate=auth.archive, csv=False)
     newscanform = FORM(
